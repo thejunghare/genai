@@ -19,7 +19,7 @@ gpt2_lm = keras_hub.models.GPT2CausalLM.from_preset(
 
 start = time.time()
 
-output = gpt2_lm.generate("Hi I am a boy and I am a professor and I do", max_length=50)
+output = gpt2_lm.generate("Tell me about 'The office Show US'", max_length=100)
 print("\nGPT-2 output:")
 print(output)
 
