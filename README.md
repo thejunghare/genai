@@ -1,0 +1,1 @@
+This script loads a pretrained GPT-2 language model using KerasHub, applies a preprocessing pipeline, and performs text generation. It sets TensorFlow as the Keras backend and enables mixed-precision for faster inference. After loading the GPT-2 causal language model, it generates a continuation for the given input prompt and prints both the model output and the total time taken.
