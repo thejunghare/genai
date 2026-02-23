@@ -1,0 +1,20 @@
+{
+  "packageManager": "pnpm@10.30.0",
+  "dependencies": {
+    "@langchain/classic": "^1.0.19",
+    "@langchain/community": "^1.1.17",
+    "@langchain/core": "^1.1.27",
+    "@langchain/ollama": "^1.2.4",
+    "@langchain/textsplitters": "^1.0.1",
+    "langchain": "^1.2.25",
+    "pdf-parse": "^1.1.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0"
+  },
+  "scripts": {
+    "dev": "tsx index.ts"
+  },
+  "type": "module"
+}
