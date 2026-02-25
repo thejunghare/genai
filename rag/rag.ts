@@ -9,7 +9,6 @@ import {
   RunnableSequence,
 } from "@langchain/core/runnables";
 
-// 1. INDEXING
 const loader = new PDFLoader("./nke-10k-2023.pdf");
 const docs = await loader.load();
 
@@ -19,7 +18,6 @@ const textSplitter = new RecursiveCharacterTextSplitter({
 });
 const allSplits = await textSplitter.splitDocuments(docs);
 
-// 2. EMBED + STORE
 const embeddings = new OllamaEmbeddings({ model: "nomic-embed-text" });
 const vectorStore = await MemoryVectorStore.fromDocuments(
   allSplits,
@@ -27,7 +25,6 @@ const vectorStore = await MemoryVectorStore.fromDocuments(
 );
 const retriever = vectorStore.asRetriever();
 
-// 3. PROMPT
 const prompt = ChatPromptTemplate.fromTemplate(`
 You are an assistant for question-answering tasks.
 Use only the following retrieved context to answer the question.
@@ -38,10 +35,8 @@ Context: {context}
 Question: {question}
 `);
 
-// 4. LLM
 const llm = new ChatOllama({ model: "qwen3:8b", temperature: 0.1 });
 
-// 5. CHAIN — manual but clean
 const chain = RunnableSequence.from([
   {
     context: retriever.pipe((docs) =>
@@ -54,6 +49,5 @@ const chain = RunnableSequence.from([
   new StringOutputParser(),
 ]);
 
-// 6. ASK
 const answer = await chain.invoke("When was Nike incorporated?");
 console.log(answer);
